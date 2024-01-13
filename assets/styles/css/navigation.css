@@ -1,0 +1,14 @@
+ul {
+	display: flex;
+	list-style: none;
+	gap: 1em;
+}
+
+a {
+	text-decoration: none;
+}
+
+.router-link-exact-active {
+	opacity: 1 !important;
+	text-decoration: underline;
+}
