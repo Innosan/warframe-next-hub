@@ -1,14 +1,10 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const appConfig = useAppConfig();
+</script>
 
 <template>
 	<h1>Home page</h1>
-	<nav>
-		<ul>
-			<li><NuxtLink to="/">Home</NuxtLink></li>
-			<li><NuxtLink to="/about">About</NuxtLink></li>
-		</ul>
-	</nav>
-	<UButton label="Do something" />
+	<UButton @click="appConfig.ui.primary = 'green'" label="Do something" />
 </template>
 
 <style scoped></style>

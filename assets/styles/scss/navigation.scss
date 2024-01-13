@@ -1,11 +1,17 @@
 ul {
 	display: flex;
 	list-style: none;
-	gap: 1em;
+	gap: 2em;
 }
 
 a {
 	text-decoration: none;
+	opacity: .7;
+	transition: .3s;
+
+	&:hover {
+		opacity: .9;
+	}
 }
 
 .router-link-exact-active {

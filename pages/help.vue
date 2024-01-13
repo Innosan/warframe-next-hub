@@ -1,5 +1,7 @@
 <script setup lang="ts"></script>
 
-<template></template>
+<template>
+	<h2>Help page</h2>
+</template>
 
 <style scoped></style>
