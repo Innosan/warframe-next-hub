@@ -3,20 +3,35 @@ import type { NavigationLink } from "~/types/general";
 export const navigation: NavigationLink[] = [
 	{
 		id: 1,
-		url: "/",
-		title: "Home",
+		to: "/",
+		label: "Home",
 		icon: "i-heroicons-home-solid",
 	},
 	{
 		id: 2,
-		url: "/about",
-		title: "About",
+		to: "/about",
+		label: "About",
 		icon: "i-heroicons-information-circle",
 	},
 	{
 		id: 3,
-		url: "/help",
-		title: "Help",
+		to: "/help",
+		label: "Help",
 		icon: "i-heroicons-user-group-solid",
+	},
+];
+
+export const socials: NavigationLink[] = [
+	{
+		id: 1,
+		to: "https://github.com",
+		label: "GitHub",
+		icon: "i-octicon-mark-github-16",
+	},
+	{
+		id: 2,
+		to: "https://telegram.com",
+		label: "Telegram",
+		icon: "i-streamline-telegram-solid",
 	},
 ];

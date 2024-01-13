@@ -2,6 +2,7 @@
 	<ClientOnly>
 		<UToggle
 			color="primary"
+			size="xl"
 			on-icon="i-heroicons-moon-20-solid"
 			off-icon="i-heroicons-sun-20-solid"
 			variant="ghost"

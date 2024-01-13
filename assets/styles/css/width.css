@@ -1,4 +1,4 @@
-header, .page-container {
+header, footer div, .page-container {
 	width: 90vw;
 	margin: 0 auto;
 }

@@ -1,6 +1,6 @@
 export type NavigationLink = {
 	id: number;
-	url: string;
-	title: string;
+	to: string;
+	label: string;
 	icon: string;
 };
