@@ -1,4 +1,4 @@
-import type { PriceType } from "~/types/GameItem";
+import type { PriceType } from "~/types/PriceType";
 
 export const priceTypes: PriceType[] = [
 	{

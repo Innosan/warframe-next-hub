@@ -1,3 +1,6 @@
+import type { PriceType } from "~/types/PriceType";
+import type { DropLocation } from "~/types/DropLocation";
+
 export type GameItem = {
 	id: number;
 	title: string;
@@ -8,17 +11,4 @@ export type GameItem = {
 	};
 	dropLocation: DropLocation;
 	isDone: boolean;
-};
-
-export type DropLocation = {
-	id: number;
-	openLocation?: string;
-	planet?: string;
-	vendor?: string;
-};
-
-export type PriceType = {
-	id: number;
-	title: string;
-	icon?: string;
 };

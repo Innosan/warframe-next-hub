@@ -8,14 +8,20 @@ const props = defineProps({
 		type: Number,
 		required: true,
 	},
+	tooltip: {
+		type: String,
+		required: true,
+	},
 });
 </script>
 
 <template>
-	<div>
-		<p class="opacity-70">{{ label }}</p>
-		<p class="text-xl font-bold">{{ value }}</p>
-	</div>
+	<UTooltip :text="tooltip">
+		<div>
+			<p class="opacity-70">{{ label }}</p>
+			<p class="text-xl font-bold">{{ value }}</p>
+		</div>
+	</UTooltip>
 </template>
 
 <style scoped></style>

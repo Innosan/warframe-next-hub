@@ -4,7 +4,7 @@ const transformedNavigation = navigation.map(({ id, ...rest }) => [rest]);
 </script>
 
 <template>
-	<header class="flex justify-between items-center gap-4">
+	<header class="flex justify-between items-center gap-4 mb-8">
 		<div class="flex gap-6 items-center">
 			<h1 class="font-black text-2xl text-primary">
 				Nuxt Template Project
