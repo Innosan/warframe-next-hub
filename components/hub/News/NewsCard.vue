@@ -39,7 +39,7 @@ const newsTypes = [
 
 <template>
 	<a
-		class="grid justify-between opacity-100"
+		class="grid justify-between items-stretch opacity-100"
 		:href="item.link"
 		draggable="false"
 		target="_blank"
