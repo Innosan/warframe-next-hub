@@ -22,6 +22,5 @@ onUnmounted(() => {
 		<div class="page-container">
 			<NuxtPage />
 		</div>
-		<Footer />
 	</div>
 </template>

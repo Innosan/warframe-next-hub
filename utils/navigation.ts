@@ -3,8 +3,8 @@ import type { NavigationLink } from "~/types/NavigationLink";
 export const navigation: NavigationLink[] = [
 	{
 		id: 1,
-		to: "/",
-		label: "Home",
+		to: "/hub",
+		label: "Hub",
 		icon: "i-heroicons-home-solid",
 	},
 	{
