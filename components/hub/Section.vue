@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { headingSizes } from "~/utils/SectionSize";
+
 const props = defineProps({
 	sectionIcon: {
 		type: String,
@@ -13,7 +15,11 @@ const props = defineProps({
 
 <template>
 	<div class="flex flex-col gap-4">
-		<SectionHeading :icon="sectionIcon" :title="sectionTitle" />
+		<SectionHeading
+			:icon="sectionIcon"
+			:title="sectionTitle"
+			:size="headingSizes.lg"
+		/>
 
 		<slot />
 	</div>
