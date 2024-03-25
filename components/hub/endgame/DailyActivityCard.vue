@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { sortie } from "~/utils/endgame";
+import type { EndGameActivity } from "~/types/EndGame/EndGameActivity";
+import type { PropType } from "vue";
 
 const props = defineProps({
 	title: {
@@ -7,11 +8,7 @@ const props = defineProps({
 		required: true,
 	},
 	info: {
-		type: Object,
-		required: true,
-	},
-	missions: {
-		type: Array,
+		type: Object as PropType<EndGameActivity>,
 		required: true,
 	},
 });
@@ -26,12 +23,24 @@ const props = defineProps({
 				<p>{{ info.eta }}</p>
 			</div>
 		</template>
-		<div v-for="mission in missions" class="flex gap-2 flex-col">
-			<p>
-				{{ mission.missionType ?? mission.missionType }}
-				{{ mission.type ?? mission.type }}
-			</p>
-		</div>
+
+		<!-- Sortie missions -->
+		<template v-if="info.variants">
+			<div v-for="mission in info.variants" class="flex gap-2 flex-col">
+				<p>
+					{{ mission.missionType }}
+				</p>
+			</div>
+		</template>
+
+		<!-- Archon missions -->
+		<template v-if="info.missions">
+			<div v-for="mission in info.missions" class="flex gap-2 flex-col">
+				<p>
+					{{ mission.type }}
+				</p>
+			</div>
+		</template>
 	</UCard>
 </template>
 
