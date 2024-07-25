@@ -23,7 +23,7 @@ const props = defineProps({
 </script>
 
 <template>
-	<UCard>
+	<UCard :ui="CardSize.compact">
 		<template #header>
 			<div class="flex gap-2 items-center">
 				<p class="text-xl font-bold">{{ cycleName }}</p>
@@ -33,7 +33,18 @@ const props = defineProps({
 				</p>
 			</div>
 		</template>
-		<p>{{ cycleInfo.expiry }}</p>
+		<p v-if="cycleInfo.timeLeft">{{ cycleInfo.timeLeft }}</p>
+		<template v-if="cycleInfo.choices">
+			<div
+				class="flex gap-1 flex-col"
+				v-for="choice in cycleInfo.choices"
+			>
+				<p>{{ choice.category }}</p>
+				<div class="flex gap-2 opacity-80 text-sm">
+					<p v-for="wfChoice in choice.choices">{{ wfChoice }}</p>
+				</div>
+			</div>
+		</template>
 	</UCard>
 </template>
 

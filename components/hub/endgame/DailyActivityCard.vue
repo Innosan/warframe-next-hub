@@ -15,7 +15,7 @@ const props = defineProps({
 </script>
 
 <template>
-	<UCard>
+	<UCard :ui="CardSize.compact">
 		<template #header>
 			<div class="flex gap-2">
 				<h1 class="font-black opacity-70">{{ title }}</h1>

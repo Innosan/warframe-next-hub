@@ -83,17 +83,16 @@
 			</Section>
 		</div>
 
-		<SectionHeading
-			title="Endgame Content"
-			icon="i-heroicons-sparkles-solid"
-			:size="headingSizes.xl"
-		/>
-
 		<!-- Sortie / Archon Hunt -->
-		<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-12">
-			<DailyActivityCard title="Sortie" :info="sortie" />
-			<DailyActivityCard title="Archon Hunt" :info="archon" />
-		</div>
+		<Section
+			section-title="Endgame Content"
+			section-icon="i-heroicons-sparkles-solid"
+		>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-12">
+				<DailyActivityCard title="Sortie" :info="sortie" />
+				<DailyActivityCard title="Archon Hunt" :info="archon" />
+			</div>
+		</Section>
 
 		<Section
 			section-title="Syndicates"
