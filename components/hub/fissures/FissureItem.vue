@@ -25,10 +25,7 @@ const props = defineProps({
 			<span class="text-nowrap">{{ fissure.tier }}</span>
 			<span class="text-nowrap">{{ fissure.missionType }}</span>
 			<span class="text-gray-500 dark:text-gray-400">{{
-				fissure.node
-			}}</span>
-			<span class="text-gray-500 dark:text-gray-400">{{
-				fissure.enemy
+				fissure.eta
 			}}</span>
 		</div>
 

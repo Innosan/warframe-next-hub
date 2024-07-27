@@ -10,7 +10,7 @@
 			section-title="Cycles"
 			section-icon="i-material-symbols-auto-timer-rounded"
 		>
-			<div class="grid grid-cols-1 md:grid-cols-4 justify-between gap-4">
+			<div class="grid grid-cols-3 md:grid-cols-5 justify-between gap-4">
 				<CycleCard
 					v-for="cycle in cycles"
 					:key="cycle.info.id"
