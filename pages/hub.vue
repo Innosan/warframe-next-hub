@@ -1,16 +1,18 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const routineStore = useRoutineStore();
+routineStore.refreshTasks();
+</script>
 
 <template>
 	<div class="flex flex-col gap-8">
-		<!-- News section -->
-		<News />
+		<!-- News section (under construction) -->
 
 		<!-- Cycles section -->
 		<Section
 			section-title="Cycles"
 			section-icon="i-material-symbols-auto-timer-rounded"
 		>
-			<div class="grid grid-cols-1 md:grid-cols-4 justify-between gap-4">
+			<div class="grid grid-cols-3 md:grid-cols-5 justify-between gap-4">
 				<CycleCard
 					v-for="cycle in cycles"
 					:key="cycle.info.id"
@@ -100,7 +102,9 @@
 		>
 			<div class="grid grid-cols-2 md:grid-cols-6 gap-2">
 				<SyndicateModal
-					v-for="syndicate in syndicates"
+					v-for="syndicate in syndicates.sort(
+						(a, b) => b.jobs.length - a.jobs.length,
+					)"
 					:syndicate="syndicate"
 				/>
 			</div>

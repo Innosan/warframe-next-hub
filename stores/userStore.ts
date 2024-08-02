@@ -29,6 +29,11 @@ export const useUserStore = defineStore(
 		};
 	},
 	{
-		persist: true,
+		persist: {
+			storage: persistedState.cookiesWithOptions({
+				sameSite: "strict",
+				maxAge: 31536000,
+			}),
+		},
 	},
 );

@@ -9,3 +9,7 @@ header, footer div, .page-container {
 	flex-direction: column;
 	gap: 2em;
 }
+
+.scrollable-content {
+	padding-right: 0.75rem;
+}

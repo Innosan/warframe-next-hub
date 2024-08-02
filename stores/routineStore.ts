@@ -36,15 +36,65 @@ export const useRoutineStore = defineStore(
 			}
 		};
 
+		const changeTaskStatus = (id: string) => {
+			const allTasks = daily.value.concat(week.value);
+			const index = allTasks.findIndex((task) => task.id === id);
+
+			if (index !== -1) {
+				if (allTasks[index].completed) {
+					allTasks[index].completed = false;
+					allTasks[index].completedAt = undefined;
+				} else {
+					allTasks[index].completed = true;
+					allTasks[index].completedAt = new Date().toISOString();
+				}
+			}
+		};
+
+		const refreshTasks = () => {
+			const now = new Date();
+			const isMonday = now.getDay() === 1;
+
+			daily.value.forEach((task) => {
+				const startedAt = new Date(task.startedAt);
+
+				const isNextDay = now.getDate() !== startedAt.getDate();
+
+				if (task.isRefreshable && isNextDay) {
+					task.completed = false;
+					task.startedAt = now.toISOString();
+					task.completedAt = undefined;
+				}
+			});
+
+			if (!isMonday) return;
+			else {
+				week.value.forEach((task) => {
+					if (task.isRefreshable) {
+						task.completed = false;
+						task.startedAt = now.toISOString();
+						task.completedAt = undefined;
+					}
+				});
+			}
+		};
+
 		return {
 			daily,
 			week,
 			addTask,
 			removeTask,
 			updateTask,
+			refreshTasks,
+			changeTaskStatus,
 		};
 	},
 	{
-		persist: true,
+		persist: {
+			storage: persistedState.cookiesWithOptions({
+				sameSite: "strict",
+				maxAge: 31536000,
+			}),
+		},
 	},
 );

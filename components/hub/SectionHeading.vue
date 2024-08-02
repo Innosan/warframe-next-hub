@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { headingSizes, type SectionSize } from "~/utils/SectionSize";
+import { HeadingSize, type SectionSize } from "~/utils/ui/SectionSize";
 import type { PropType } from "vue";
 
 const props = defineProps({
@@ -7,7 +7,7 @@ const props = defineProps({
 	icon: String,
 	size: {
 		type: Object as PropType<SectionSize>,
-		default: headingSizes.xl,
+		default: HeadingSize.xl,
 	},
 });
 </script>
