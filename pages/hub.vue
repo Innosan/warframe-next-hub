@@ -1,9 +1,11 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+const routineStore = useRoutineStore();
+routineStore.refreshTasks();
+</script>
 
 <template>
 	<div class="flex flex-col gap-8">
-		<!-- News section -->
-		<News />
+		<!-- News section (under construction) -->
 
 		<!-- Cycles section -->
 		<Section
@@ -100,7 +102,9 @@
 		>
 			<div class="grid grid-cols-2 md:grid-cols-6 gap-2">
 				<SyndicateModal
-					v-for="syndicate in syndicates"
+					v-for="syndicate in syndicates.sort(
+						(a, b) => b.jobs.length - a.jobs.length,
+					)"
 					:syndicate="syndicate"
 				/>
 			</div>

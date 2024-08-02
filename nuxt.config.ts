@@ -3,12 +3,14 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 
 	modules: [
-        "@nuxt/ui",
-        "@formkit/auto-animate/nuxt",
-        "@pinia/nuxt",
-        "@pinia-plugin-persistedstate/nuxt",
-        "@nuxt/image"
-    ],
+		"@nuxt/ui",
+		"@formkit/auto-animate/nuxt",
+		"@pinia/nuxt",
+		"@pinia-plugin-persistedstate/nuxt",
+		"@nuxt/image",
+		"@hypernym/nuxt-anime",
+		"@nuxt/test-utils/module",
+	],
 
 	components: [
 		{

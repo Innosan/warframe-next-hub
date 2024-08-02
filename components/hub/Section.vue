@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { headingSizes } from "~/utils/SectionSize";
+import { HeadingSize } from "~/utils/ui/SectionSize";
 
 const props = defineProps({
 	sectionIcon: {
@@ -18,7 +18,7 @@ const props = defineProps({
 		<SectionHeading
 			:icon="sectionIcon"
 			:title="sectionTitle"
-			:size="headingSizes.lg"
+			:size="HeadingSize.lg"
 		/>
 
 		<slot />

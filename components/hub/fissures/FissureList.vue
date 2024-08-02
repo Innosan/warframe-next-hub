@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import { fissures } from "~/utils/fissures";
 
-// tier 1-4 && !isStorm - basic
-// railjack - requiem (1)
-// tier === 5 - requiem (2)
 enum Sort {
 	Basic,
 	Railjack,
@@ -26,7 +23,7 @@ const sortedFissures = computed(() => {
 </script>
 
 <template>
-	<div class="h-80 overflow-y-auto">
+	<div class="h-80 overflow-y-auto scrollable-content">
 		<UAccordion
 			:items="sortedFissures"
 			multiple

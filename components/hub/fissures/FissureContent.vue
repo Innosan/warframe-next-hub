@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import type { Fissure } from "~/types/Fissure/Fissure";
-import FissureContentItem from "~/components/hub/fissures/FissureContentItem.vue";
+import FissureContentItem from "~/components/containers/IconedTitle.vue";
 
 const props = defineProps({
 	fissure: {

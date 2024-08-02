@@ -3,7 +3,7 @@ export type SectionSize = {
 	icon: string;
 };
 
-export const headingSizes = {
+export const HeadingSize = {
 	sm: <SectionSize>{
 		text: "text-sm",
 		icon: "w-3 h-3",

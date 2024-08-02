@@ -13,7 +13,13 @@ const props = defineProps({
 </script>
 
 <template>
-	<UButton :label="syndicate.syndicate" @click="isOpen = true" color="gray" />
+	<UButton
+		:disabled="syndicate.jobs.length === 0"
+		:label="syndicate.syndicate"
+		@click="isOpen = true"
+		color="gray"
+		:variant="syndicate.jobs.length === 0 ? 'ghost' : 'solid'"
+	/>
 
 	<UModal v-model="isOpen" class="w-4/6" :ui="{ width: 'sm:max-w-2xl' }">
 		<UCard>

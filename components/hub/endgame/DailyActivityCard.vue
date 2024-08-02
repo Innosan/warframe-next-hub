@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { EndGameActivity } from "~/types/EndGame/EndGameActivity";
 import type { PropType } from "vue";
+import { CardSize } from "~/utils/ui/CardSize";
 
 const props = defineProps({
 	title: {
