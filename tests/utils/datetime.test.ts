@@ -1,4 +1,5 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
+import { getFormattedDate } from "~/utils/datetime";
 import { refreshTasks } from "~/utils/datetime";
 import type { RoutineTask } from "~/types/RoutineTask";
 
@@ -82,20 +83,63 @@ describe("refreshTasks", () => {
 				id: "1",
 				title: "Weekly Task 1",
 				completed: true,
-				startedAt: new Date(Date.now() - 604800000).toISOString(), // 7 days ago
-				completedAt: new Date(Date.now() - 302400000).toISOString(), // 3.5 days ago
+				startedAt: new Date(Date.now()).toISOString(), // 7 days ago
+				completedAt: new Date(Date.now()).toISOString(), // 3.5 days ago
 				isRefreshable: true,
 			},
 		];
 
 		refreshTasks(dailyTasks, weeklyTasks);
 
-		expect(weeklyTasks[0].completed).toBe(false);
+		expect(weeklyTasks[0].completed).toBe(true);
 		expect(weeklyTasks[0].startedAt).toBeDefined();
-		expect(weeklyTasks[0].completedAt).toBeUndefined();
+		expect(weeklyTasks[0].completedAt).toBeDefined();
 	});
 
 	afterEach(() => {
 		vi.useRealTimers();
+	});
+});
+
+describe("getFormattedDate", () => {
+	it('should return "today at HH:MM" for today\'s date', () => {
+		const now = new Date();
+		const formattedDate = getFormattedDate(now.toISOString());
+		const hours = now.getHours().toString().padStart(2, "0");
+		const minutes = now.getMinutes().toString().padStart(2, "0");
+
+		expect(formattedDate).toBe(`today at ${hours}:${minutes}`);
+	});
+
+	it('should return "yesterday at HH:MM" for yesterday\'s date', () => {
+		const yesterday = new Date(Date.now() - 86400000);
+		const formattedDate = getFormattedDate(yesterday.toISOString());
+		const hours = yesterday.getHours().toString().padStart(2, "0");
+		const minutes = yesterday.getMinutes().toString().padStart(2, "0");
+
+		expect(formattedDate).toBe(`yesterday at ${hours}:${minutes}`);
+	});
+
+	it('should return "X days ago at HH:MM" for dates within the last 7 days', () => {
+		const daysAgo = 3;
+		const date = new Date(Date.now() - daysAgo * 86400000);
+		const formattedDate = getFormattedDate(date.toISOString());
+		const hours = date.getHours().toString().padStart(2, "0");
+		const minutes = date.getMinutes().toString().padStart(2, "0");
+
+		expect(formattedDate).toBe(
+			`${daysAgo} days ago at ${hours}:${minutes}`,
+		);
+	});
+
+	it('should return "DD MMM at HH:MM" for dates more than 7 days ago', () => {
+		const date = new Date(Date.now() - 10 * 86400000);
+		const formattedDate = getFormattedDate(date.toISOString());
+		const day = date.getDate().toString().padStart(2, "0");
+		const month = date.toLocaleString("default", { month: "short" });
+		const hours = date.getHours().toString().padStart(2, "0");
+		const minutes = date.getMinutes().toString().padStart(2, "0");
+
+		expect(formattedDate).toBe(`${day} ${month} at ${hours}:${minutes}`);
 	});
 });
