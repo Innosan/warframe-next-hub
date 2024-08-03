@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { PropType } from "vue";
 import type { CycleInfo } from "~/types/Cycle/CycleInfo";
+import { secondsToTimeString, timeStringToSeconds } from "~/utils/datetime";
+import { getCycleInfo } from "~/types/Cycle/CycleInfoMap";
 
 const props = defineProps({
 	id: {
@@ -22,6 +24,35 @@ const props = defineProps({
 });
 
 const isOpened = ref(false);
+
+const dynamicTimeLeft = ref(
+	timeStringToSeconds(props.cycleInfo.timeLeft ?? "") ?? 0,
+);
+const dynamicTimeString = ref(props.cycleInfo.timeLeft ?? "");
+
+const cycleMap = getCycleInfo(
+	props.cycleInfo?.state ?? "",
+	props.cycleInfo.isCetus,
+) ?? { maxTime: 0, color: "gray" };
+
+onMounted(() => {
+	const interval = setInterval(() => {
+		if (dynamicTimeLeft.value > 0) {
+			dynamicTimeLeft.value -= 1;
+			dynamicTimeString.value = secondsToTimeString(
+				dynamicTimeLeft.value,
+			);
+		} else {
+			clearInterval(interval);
+		}
+	}, 1000);
+
+	onUnmounted(() => {
+		clearInterval(interval);
+	});
+});
+
+const now = new Date();
 </script>
 
 <template>
@@ -38,20 +69,20 @@ const isOpened = ref(false);
 			}
 		"
 	>
-		<p class="font-bold truncate">
-			{{ cycleName }}
-		</p>
-		<div
-			class="flex flex-col lg:flex-row gap-1 font-bold opacity-70 text-sm"
-		>
-			<p>
-				{{
-					cycleInfo.state[0].toUpperCase() + cycleInfo.state.slice(1)
-				}}
+		<div class="flex gap-1 items-center">
+			<UIcon class="w-5 h-5" :name="cycleMap.icon" dynamic />
+			<p class="font-bold truncate">
+				{{ cycleName[0].toUpperCase() + cycleName.slice(1) }}
 			</p>
-			<p v-if="cycleInfo.timeLeft" class="underline">
-				for {{ cycleInfo.timeLeft }}
-			</p>
+		</div>
+
+		<div>
+			<p class="text-sm opacity-70">{{ dynamicTimeString }}</p>
+			<UProgress
+				:value="dynamicTimeLeft"
+				:max="cycleMap.maxTime"
+				:color="cycleMap.color"
+			/>
 		</div>
 	</div>
 	<UModal v-model="isOpened">

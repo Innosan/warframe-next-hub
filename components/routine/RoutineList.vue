@@ -48,7 +48,13 @@ const leftToComplete = computed(
 				class="transition-all"
 				:class="item.completed ? 'opacity-60 line-through' : ''"
 			>
-				<span class="truncate font-bold">{{ item.title }}</span>
+				<span class="truncate font-bold">{{ item.title }} </span>
+				<span class="opacity-70">{{
+					item.subroutines.length > 0
+						? item.subroutines.filter((s) => !s.completed).length +
+						  " subs left"
+						: ""
+				}}</span>
 
 				<template #trailing>
 					<UIcon
@@ -82,6 +88,34 @@ const leftToComplete = computed(
 					/>
 				</div>
 
+				<!-- Subtasks list -->
+				<div
+					v-if="item.subroutines.length !== 0"
+					class="flex gap-3 flex-wrap"
+				>
+					<div
+						v-for="subtask in item.subroutines"
+						class="flex gap-2 w-min p-1.5 text-sm rounded-md items-center ring-1 ring-gray-800"
+					>
+						<UCheckbox
+							icon="i-heroicons-x-mark"
+							v-model="subtask.completed"
+							size="xs"
+							variant="link"
+							:padded="false"
+							@click="
+								routineStore.changeSubroutineStatus(
+									subtask.id,
+									item.id,
+								)
+							"
+						/>
+						<p :class="subtask.completed ? 'line-through' : ''">
+							{{ subtask.title }}
+						</p>
+					</div>
+				</div>
+
 				<UDivider />
 
 				<UButtonGroup size="xs">
@@ -101,6 +135,7 @@ const leftToComplete = computed(
 						"
 					/>
 					<UButton
+						:disabled="true"
 						color="white"
 						variant="solid"
 						label="Edit"

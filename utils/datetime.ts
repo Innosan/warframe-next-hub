@@ -53,3 +53,43 @@ export const refreshTasks = (daily: RoutineTask[], weekly: RoutineTask[]) => {
 		});
 	}
 };
+
+export const timeStringToSeconds = (timeString: string): number => {
+	const timeParts = timeString.split(" ");
+	let totalSeconds = 0;
+
+	timeParts.forEach((part) => {
+		const value = parseInt(part.slice(0, -1));
+		const unit = part.slice(-1);
+
+		if (unit === "h") {
+			totalSeconds += value * 3600;
+		} else if (unit === "m") {
+			totalSeconds += value * 60;
+		} else if (unit === "s") {
+			totalSeconds += value;
+		}
+	});
+
+	return totalSeconds;
+};
+
+export const secondsToTimeString = (seconds: number): string => {
+	const h = Math.floor(seconds / 3600);
+	const m = Math.floor((seconds % 3600) / 60);
+	const s = seconds % 60;
+
+	const hStr = h > 0 ? `${h}h ` : "";
+	const mStr = m > 0 ? `${m}m ` : "";
+	const sStr = `${s}s`;
+
+	return `${hStr}${mStr}${sStr}`.trim();
+};
+
+export const decrementTimeString = (timeString: string): string => {
+	let totalSeconds = timeStringToSeconds(timeString);
+	if (totalSeconds > 0) {
+		totalSeconds -= 1;
+	}
+	return secondsToTimeString(totalSeconds);
+};

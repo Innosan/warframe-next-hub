@@ -51,6 +51,21 @@ export const useRoutineStore = defineStore(
 			}
 		};
 
+		const changeSubroutineStatus = (taskId: string, subId: string) => {
+			const allTasks = daily.value.concat(week.value);
+			const index = allTasks.findIndex((task) => task.id === taskId);
+
+			if (index !== -1) {
+				const subIndex = allTasks[index].subroutines.findIndex(
+					(sub) => sub.id === subId,
+				);
+				if (subIndex !== -1) {
+					allTasks[index].subroutines[subIndex].completed =
+						!allTasks[index].subroutines[subIndex].completed;
+				}
+			}
+		};
+
 		const refreshTasks = () => {
 			const now = new Date();
 			const isMonday = now.getDay() === 1;
@@ -87,6 +102,7 @@ export const useRoutineStore = defineStore(
 			updateTask,
 			refreshTasks,
 			changeTaskStatus,
+			changeSubroutineStatus,
 		};
 	},
 	{

@@ -10,7 +10,7 @@ export const HeadingSize = {
 	},
 	lg: <SectionSize>{
 		text: "text-xl",
-		icon: "w-4 h-4",
+		icon: "w-6 h-6",
 	},
 	xl: <SectionSize>{
 		text: "text-2xl",

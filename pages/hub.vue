@@ -111,5 +111,3 @@ routineStore.refreshTasks();
 		</Section>
 	</div>
 </template>
-
-<style scoped></style>
